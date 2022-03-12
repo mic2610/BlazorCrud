@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api\Common\" />
+    <Folder Include="Api\Forms\" />
+    <Folder Include="Api\Queries\GetComics\" />
+    <Folder Include="Api\Queries\GetSuperHeroes\" />
+  </ItemGroup>
+
+</Project>
