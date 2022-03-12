@@ -1,4 +1,4 @@
-using BlazorCrud.Shared;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorCrud.Server.Controllers

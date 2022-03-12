@@ -1,4 +1,4 @@
-namespace BlazorCrud.Shared
+namespace Domain.Entities
 {
     public class WeatherForecast
     {
