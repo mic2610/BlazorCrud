@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Api.Queries.GetSuperHeroes
+namespace Application.Api.Queries.GetComics
 {
-    public class SuperHeroesDto
+    public class ComicsDto
     {
-        public IList<SuperHero> SuperHeroes { get; set; }
+        public IList<Comic> Comics { get; set; }
     }
 }
