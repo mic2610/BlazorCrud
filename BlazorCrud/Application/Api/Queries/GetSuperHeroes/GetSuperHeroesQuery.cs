@@ -1,5 +1,7 @@
-﻿using Domain.Entities;
+﻿using Application.Common.Interfaces;
+using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +16,16 @@ namespace Application.Api.Queries.GetSuperHeroes
 
     public class GetSuperHeroesQueryHandler : IRequestHandler<GetSuperHeroesQuery, SuperHeroesDto>
     {
+        private readonly IApplicationDbContext _applicationDbContext;
+
+        public GetSuperHeroesQueryHandler(IApplicationDbContext applicationDbContext)
+        {
+            _applicationDbContext = applicationDbContext;
+        }
+
         public async Task<SuperHeroesDto> Handle(GetSuperHeroesQuery request, CancellationToken cancellationToken)
         {
-            await Task.CompletedTask;
-            return new SuperHeroesDto { SuperHeroes = new List<SuperHero> { new SuperHero { Id = 1, FirstName = "Bat", LastName = "Man", HeroName = "Dark Knight" } } };
+            return new SuperHeroesDto { SuperHeroes = await _applicationDbContext.SuperHeroes.ToListAsync(cancellationToken) };
         }
     }
 }
