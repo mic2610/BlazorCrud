@@ -1,4 +1,6 @@
-﻿using Application.Api.Queries.GetComics;
+﻿using Application.Api.Commands.CreateSuperHero;
+using Application.Api.Commands.UpdateSuperHro;
+using Application.Api.Queries.GetComics;
 using Application.Api.Queries.GetSuperHeroes;
 using Domain.Entities;
 using Microsoft.AspNetCore.Components;
@@ -24,7 +26,7 @@ namespace BlazorCrud.Client.Services
 
         public async Task CreateHero(SuperHeroDto hero)
         {
-            var result = await _http.PostAsJsonAsync("api/superhero", hero);
+            var result = await _http.PostAsJsonAsync("api/superhero", new CreateSuperHeroCommand { SuperHero = hero?.SuperHero });
             await SetHeroes(result);
         }
 
@@ -66,7 +68,7 @@ namespace BlazorCrud.Client.Services
 
         public async Task UpdateHero(SuperHeroDto hero)
         {
-            var result = await _http.PutAsJsonAsync($"api/superhero/{hero.SuperHero.Id}", hero);
+            var result = await _http.PutAsJsonAsync($"api/superhero/{hero.SuperHero.Id}", new UpdateSuperHeroCommand { SuperHero = hero?.SuperHero });
             await SetHeroes(result);
         }
 

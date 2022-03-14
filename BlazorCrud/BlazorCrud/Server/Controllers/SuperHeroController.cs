@@ -50,15 +50,16 @@ namespace BlazorCrud.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<SuperHeroesDto>> CreateSuperHero(SuperHeroDto hero)
+        public async Task<ActionResult<SuperHeroesDto>> CreateSuperHero(CreateSuperHeroCommand request)
         {
-            return await _mediator.Send(new CreateSuperHeroCommand { SuperHero = hero?.SuperHero });
+            return await _mediator.Send(request);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<SuperHeroesDto>> UpdateSuperHero(SuperHeroDto hero, int id)
+        public async Task<ActionResult<SuperHeroesDto>> UpdateSuperHero(UpdateSuperHeroCommand request, int id)
         {
-            return await _mediator.Send(new UpdateSuperHeroCommand { SuperHero = hero?.SuperHero, Id = id });
+            request.Id = id;
+            return await _mediator.Send(request);
         }
 
         [HttpDelete("{id}")]
