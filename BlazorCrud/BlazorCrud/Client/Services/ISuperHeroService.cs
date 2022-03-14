@@ -14,6 +14,6 @@ namespace BlazorCrud.Client.Services
         Task GetComics();
         Task<SuperHeroDto> GetSingleHero(int id);
         Task GetSetSuperHeroes();
-        Task UpdateHero(SuperHero hero);
+        Task UpdateHero(SuperHeroDto hero);
     }
 }

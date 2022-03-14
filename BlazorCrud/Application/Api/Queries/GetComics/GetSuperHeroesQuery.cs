@@ -1,5 +1,7 @@
-﻿using Domain.Entities;
+﻿using Application.Common.Interfaces;
+using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Api.Queries.GetComics
 {
@@ -9,10 +11,16 @@ namespace Application.Api.Queries.GetComics
 
     public class GetComicsQueryHandler : IRequestHandler<GetComicsQuery, ComicsDto>
     {
+        private readonly IApplicationDbContext _applicationDbContext;
+
+        public GetComicsQueryHandler(IApplicationDbContext applicationDbContext)
+        {
+            _applicationDbContext = applicationDbContext;
+        }
+
         public async Task<ComicsDto> Handle(GetComicsQuery request, CancellationToken cancellationToken)
         {
-            await Task.CompletedTask;
-            return new ComicsDto { Comics = new List<Comic> { new Comic { Id = 1, Name = "DC" }, { new Comic { Id = 2, Name = "Marvel" } } } };
+            return new ComicsDto { Comics = await _applicationDbContext.Comics.ToListAsync(cancellationToken) };
         }
     }
 }

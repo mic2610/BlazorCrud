@@ -8,5 +8,11 @@ namespace Application.Common.Interfaces
         DbSet<SuperHero> SuperHeroes { get; set; }
 
         DbSet<Comic> Comics { get; set; }
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
+
+        int SaveChanges();
+
+        int SaveChanges(bool acceptAllChangesOnSuccess);
     }
 }

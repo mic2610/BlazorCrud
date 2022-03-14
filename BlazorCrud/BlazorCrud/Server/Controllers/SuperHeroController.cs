@@ -1,4 +1,7 @@
-﻿using Application.Api.Queries.GetComics;
+﻿using Application.Api.Commands.CreateSuperHero;
+using Application.Api.Commands.DeleteSuperHero;
+using Application.Api.Commands.UpdateSuperHro;
+using Application.Api.Queries.GetComics;
 using Application.Api.Queries.GetSuperHeroes;
 using Domain.Entities;
 using MediatR;
@@ -44,6 +47,24 @@ namespace BlazorCrud.Web.Controllers
         public async Task<ActionResult<ComicsDto>> GetComics()
         {
             return await _mediator.Send(new GetComicsQuery());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<SuperHeroesDto>> CreateSuperHero(SuperHeroDto hero)
+        {
+            return await _mediator.Send(new CreateSuperHeroCommand { SuperHero = hero?.SuperHero });
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<SuperHeroesDto>> UpdateSuperHero(SuperHeroDto hero, int id)
+        {
+            return await _mediator.Send(new UpdateSuperHeroCommand { SuperHero = hero?.SuperHero, Id = id });
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<SuperHeroesDto>> DeleteSuperHero(int id)
+        {
+            return await _mediator.Send(new DeleteSuperHeroCommand { Id = id });
         }
     }
 }

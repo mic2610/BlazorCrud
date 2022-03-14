@@ -1,12 +1,6 @@
 ﻿using Application.Common.Interfaces;
-using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Api.Queries.GetSuperHeroes
 {
@@ -25,7 +19,7 @@ namespace Application.Api.Queries.GetSuperHeroes
 
         public async Task<SuperHeroesDto> Handle(GetSuperHeroesQuery request, CancellationToken cancellationToken)
         {
-            return new SuperHeroesDto { SuperHeroes = await _applicationDbContext.SuperHeroes.ToListAsync(cancellationToken) };
+            return new SuperHeroesDto { SuperHeroes = await _applicationDbContext.SuperHeroes.Include(s => s.Comic).ToListAsync(cancellationToken) };
         }
     }
 }

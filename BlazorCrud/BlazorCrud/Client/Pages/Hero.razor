@@ -2,6 +2,7 @@
 @page "/hero/{id:int}"
 @inject ISuperHeroService SuperHeroService
 @using Domain.Entities
+@using Application.Api.Queries.GetSuperHeroes
 
 @if (Id == null)
 {
@@ -76,11 +77,11 @@ else
     {
         if (Id == null)
         {
-            await SuperHeroService.CreateHero(new Application.Api.Queries.GetSuperHeroes.SuperHeroDto { SuperHero = hero });
+            await SuperHeroService.CreateHero(new SuperHeroDto { SuperHero = hero });
         }
         else
         {
-            await SuperHeroService.UpdateHero(hero);
+            await SuperHeroService.UpdateHero(new SuperHeroDto { SuperHero = hero });
         }
     }
 

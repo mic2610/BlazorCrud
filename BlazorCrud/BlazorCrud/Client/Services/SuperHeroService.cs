@@ -24,7 +24,7 @@ namespace BlazorCrud.Client.Services
 
         public async Task CreateHero(SuperHeroDto hero)
         {
-            var result = await _http.PostAsJsonAsync("api/superhero/superheroes", hero);
+            var result = await _http.PostAsJsonAsync("api/superhero", hero);
             await SetHeroes(result);
         }
 
@@ -64,9 +64,9 @@ namespace BlazorCrud.Client.Services
                 SuperHeroes = result;
         }
 
-        public async Task UpdateHero(SuperHero hero)
+        public async Task UpdateHero(SuperHeroDto hero)
         {
-            var result = await _http.PutAsJsonAsync($"api/superhero/{hero.Id}", hero);
+            var result = await _http.PutAsJsonAsync($"api/superhero/{hero.SuperHero.Id}", hero);
             await SetHeroes(result);
         }
 
